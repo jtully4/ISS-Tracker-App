@@ -31,7 +31,7 @@ def get_userlocation(city):
 
 def compare_isslocation(lat, lon, my_lat, my_lon):
     
-    if (abs(my_lat - lat) <= 5 and abs(my_lon - lon) <= 5):
+    if (abs(my_lat - lat) <= 5 and abs(my_lon - lon) <= 5)
         
         return True
 
