@@ -13,7 +13,7 @@ def get_isslocation():
 
 
 def get_userlocation(city):
-    api_key = "702bf8f7f61d93a1d4d16341212a872f"
+    api_key = """users API KEY"""
 
     base_url = ("http://api.openweathermap.org/geo/1.0/direct?")
 
@@ -21,9 +21,12 @@ def get_userlocation(city):
 
     response = requests.get(base_url, params = params)
     data = response.json()
-    
-    my_lat = (data[0]['lat'])
-    my_lon = (data[0]['lon'])
+
+    country = data[0]['country']
+    my_lat = data[0]['lat']
+    my_lon = data[0]['lon']
+
+    print(city_input, country)
     return my_lat, my_lon
 
 def compare_isslocation(lat, lon, my_lat, my_lon):
@@ -36,11 +39,17 @@ city_input = input("Please enter your City: ")
 lat, lon = get_isslocation()
 my_lat, my_lon = get_userlocation(city_input)
 
-print(lat, lon)
+
 
 while True:
     time.sleep(60)
+    lat, lon = get_isslocation()
     if compare_isslocation(lat, lon, my_lat, my_lon):
+        print(my_lat, my_lon)
+        print(lat, lon)
         print("The ISS is overhead!")
     else:
         print("The ISS is out of range")
+        print(my_lat, my_lon)
+        print(lat, lon)
+
